@@ -23,17 +23,23 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     @Override
     public List<News> loadInBackground() {
+        List<News> newsList = null;
         Log.d(LOG_TAG, "loadInBackground()");
         if (mUrl == null) {
             return null;
         }
+        try {
+            newsList = QueryUtils.fetchNewsData(mUrl);
+            if (newsList.size() == 0) {
+                Log.d(LOG_TAG, "news list is empty");
 
-        List<News> newsList = QueryUtils.fetchNewsData(mUrl);
-        if (newsList.size() == 0) {
-            Log.d(LOG_TAG, "news list is empty");
-        } else {
-            Log.d(LOG_TAG, newsList.get(0).getTitle());
+            } else {
+                Log.d(LOG_TAG, newsList.get(0).getTitle());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return newsList;
     }
 }

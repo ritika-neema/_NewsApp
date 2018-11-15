@@ -25,7 +25,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final String NEWS_REQUEST_URL =
             "\n" +
-                    "https://content.guardianapis.com/search?section=world&order-by=newest&api-key=9b98755e-20bb-4de3-be54-d46e6a6ce73b";
+                    "https://content.guardianapis.com/search?section=world&show-tags=contributor&order-by=newest&api-key=9b98755e-20bb-4de3-be54-d46e6a6ce73b";
     private static final String LOG_TAG = NewsActivity.class.getSimpleName();
     private static final int NEWS_LOADER_ID = 1;
     ProgressBar loadingIndicator;

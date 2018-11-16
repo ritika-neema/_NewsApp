@@ -35,9 +35,7 @@ public class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        List<News> newsList = extractFeatureFromJson(jsonResponse);
-
-        return newsList;
+        return extractFeatureFromJson(jsonResponse);
     }
 
     private static URL createUrl(String stringUrl) {
@@ -124,8 +122,8 @@ public class QueryUtils {
                 JSONObject newsObject = result.getJSONObject(i);
                 String title = newsObject.getString("webTitle");
                 String webUrl = newsObject.getString("webUrl");
-                String author = "N/A";
-                String[] authorsArray = new String[]{};
+                String webPublicationDate = newsObject.getString("webPublicationDate");
+                String author;
                 List<String> authorsList = new ArrayList<>();
 
                 JSONArray tagsArray = newsObject.getJSONArray("tags");
@@ -149,7 +147,7 @@ public class QueryUtils {
                     author = TextUtils.join(", ", authorsList);
                 }
 
-                News news = new News(title, author, webUrl);
+                News news = new News(title, webPublicationDate, author, webUrl);
                 newsList.add(news);
             }
         } catch (JSONException e) {

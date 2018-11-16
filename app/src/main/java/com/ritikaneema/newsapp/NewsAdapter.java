@@ -27,9 +27,11 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         TextView titleTV = convertView.findViewById(R.id.title);
         TextView authorTV = convertView.findViewById(R.id.author);
+        TextView dateTV = convertView.findViewById(R.id.date);
 
         titleTV.setText(news.getTitle());
         authorTV.setText(news.getAuthor());
+        dateTV.setText(news.getDate());
 
         return convertView;
     }
